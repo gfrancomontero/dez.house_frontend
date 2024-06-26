@@ -1,0 +1,19 @@
+.button {
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out, border 0.3s ease-in-out;
+  box-shadow: 0 0 15px rgba(165, 235, 153, 0.2);
+  border: none; /* Initial border */
+  -webkit-box-shadow: 0px 26px 74px -17px rgba(135,239,171,0.68);
+  -moz-box-shadow: 0px 26px 74px -17px rgba(135,239,171,0.68);
+  box-shadow: 0px 26px 74px -17px rgba(135,239,171,0.68);
+  border-right: 3px solid #010221;
+  border-bottom: 3px solid #010221;
+  max-width: fit-content;
+  &:hover {
+    -webkit-box-shadow: 0px 26px 74px -17px rgba(135,239,171,1);
+    -moz-box-shadow: 0px 26px 74px -17px rgba(135,239,171,1);
+    box-shadow: 0px 26px 74px -17px rgba(135,239,171,1);
+    transform: translate(-3px, -3px);
+    border-right: 3px solid rgb(170, 119, 215);
+    border-bottom: 3px solid rgb(170, 119, 215);
+  }
+}

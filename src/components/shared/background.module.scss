@@ -1,0 +1,40 @@
+.mainContainer {
+  background-color: #010221; /* Very dark green */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1; /* Ensure it is behind other content */
+  overflow: hidden;
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 175vh; /* Diameter of the circle (200px radius) */
+    height: 175vh;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.084), rgba(255, 255, 255, 0) 60%);
+    transition: opacity 0.3s;
+    left: var(--mouse-x);
+    top: var(--mouse-y);
+    transform: translate(-50%, -50%);
+  }
+}
+
+
+
+.neonImage {
+  transition: filter 0.1s ease;
+  filter: drop-shadow(0 0 2rem rgba(255, 0, 149, 0.54));
+
+  /* Custom properties for dynamic effect */
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+
+  &:hover {
+    filter: drop-shadow(calc(var(--mouse-x) * 0.05px) calc(var(--mouse-y) * 0.05px) 2rem rgba(0, 255, 255, 0.7));
+  }
+}
+  
