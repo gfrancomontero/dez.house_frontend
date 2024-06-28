@@ -1,53 +1,35 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import useLocalStorageManager from '/src/hooks/LocalStorageManager';
 import ListCard from './HouseCardComponents/ListCard';
 import ExpandedCard from './HouseCardComponents/ExpandedCard';
 import { AnimatePresence } from 'framer-motion';
 
+type House = {
+  title: string;
+  images: { url: string }[];
+  general_address: string;
+  price_per_night: number;
+  price_per_week: number;
+  price_per_month: number;
+  bedrooms: number;
+  bathrooms: number;
+  id: number;
+};
+
 type HouseCardProps = {
-  house: {
-    title: string;
-    images: { url: string }[];
-    general_address: string;
-    price_per_night: number;
-    price_per_week: number;
-    price_per_month: number;
-    bedrooms: number;
-    bathrooms: number;
-    id: number;
-  };
+  house: House;
 };
 
 const HouseCard = React.forwardRef<HTMLDivElement, HouseCardProps>(({ house }, ref) => {
   const [isClicked, setIsClicked] = useState(false);
-  const [liked, setLiked] = useState(false);
-  const [likedHouses, setLikedHouses] = useState(new Set<number>());
-
-  useEffect(() => {
-    try {
-      const storedLikes = JSON.parse(localStorage.getItem('likedHouses') || '[]');
-      setLikedHouses(new Set(storedLikes));
-      setLiked(storedLikes.includes(house.id));
-    } catch (error) {
-      console.error("Failed to fetch liked houses from localStorage:", error);
-    }
-  }, [house.id]);
+  const { storedValue: likedHouses, addToLocalStorage, removeFromLocalStorage } = useLocalStorageManager<number>('likedHouses', []);
+  const liked = likedHouses.includes(house.id);
 
   const handleLikeToggle = () => {
-    const updatedLikedHouses = new Set(likedHouses);
-    if (liked) {
-      updatedLikedHouses.delete(house.id);
-    } else {
-      updatedLikedHouses.add(house.id);
-    }
-    try {
-      localStorage.setItem('likedHouses', JSON.stringify(Array.from(updatedLikedHouses)));
-      setLikedHouses(updatedLikedHouses);
-      setLiked(!liked);
-    } catch (error) {
-      console.error("Failed to update liked houses in localStorage:", error);
-    }
+    const message = liked ? 'Removed from likes.' : 'Added to likes.';
+    liked ? removeFromLocalStorage(house.id, message) : addToLocalStorage(house.id, message);
   };
 
   return (
