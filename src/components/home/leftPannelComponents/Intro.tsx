@@ -4,7 +4,7 @@ const Intro: React.FC = () => {
   const visitorCount: string = '721';
 
   return (
-    <>
+    <div className="z-50 w-fit">
       <h1 className="text-slate-200 lg:text-5xl md:text-4xl sm:text-2xl xs:text-lg lg:whitespace-nowrap">
         DEZ.HOUSE
       </h1>
@@ -18,7 +18,7 @@ const Intro: React.FC = () => {
         <br />
         a sublet today
       </h4>
-    </>
+    </div>
   );
 };
 

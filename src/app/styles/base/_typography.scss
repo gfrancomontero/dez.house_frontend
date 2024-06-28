@@ -34,37 +34,41 @@ a {
 
 // Usage
 
-.inria-sans-light {
+.font-inria {
+  font-family: "Inria Sans", sans-serif;
+}
+
+.font-inria-light {
   font-family: "Inria Sans", sans-serif;
   font-weight: 300;
   font-style: normal;
 }
 
-.inria-sans-regular {
+.font-inria-regular {
   font-family: "Inria Sans", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
-.inria-sans-bold {
+.font-inria-bold {
   font-family: "Inria Sans", sans-serif;
   font-weight: 700;
   font-style: normal;
 }
 
-.inria-sans-light-italic {
+.font-inria-light-italic {
   font-family: "Inria Sans", sans-serif;
   font-weight: 300;
   font-style: italic;
 }
 
-.inria-sans-regular-italic {
+.font-inria-regular-italic {
   font-family: "Inria Sans", sans-serif;
   font-weight: 400;
   font-style: italic;
 }
 
-.inria-sans-bold-italic {
+.font-inria-bold-italic {
   font-family: "Inria Sans", sans-serif;
   font-weight: 700;
   font-style: italic;
@@ -79,7 +83,7 @@ a {
 //   font-weight: <weight>;
 //   font-style: normal;
 // }
-.overpass-mono-regular {
+.font-overpass {
   font-family: "Overpass Mono", monospace;
   font-optical-sizing: auto;
   font-weight: 400;

@@ -2,7 +2,7 @@
 
 import React, { ReactNode } from 'react';
 import './globals.scss';
-import Background from '../components/shared/Background';
+import Background from '../components/layout/Background';
 
 export const metadata = {
   title: 'DEZ.HOUSES',

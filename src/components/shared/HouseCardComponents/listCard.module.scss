@@ -1,0 +1,19 @@
+.card {
+  position: relative;
+  overflow: hidden;
+  transition: background 0.5s ease-out;
+
+  &:hover {
+    background-color: rgba(93, 113, 52, 0.362);
+  }
+
+  &.isClicked {
+    background-color: #010221; /* Same very dark green color */
+    border-radius: 0px;
+    height: calc(100vh - 2rem);
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 150;
+  }
+}

@@ -10,7 +10,7 @@ const Nav:React.FC = () => {
   ]
 
   return (
-    <div className={`${styles.nav} text-white flex flex-row mb-28`}>
+    <div className={`${styles.nav} text-white flex flex-row mb-2`}>
       {links.map((item, index) => (
         <Link className="ml-6 transition-ease" key={index} href={`/${item.link}`}>{item.text}</Link>
       ))}
