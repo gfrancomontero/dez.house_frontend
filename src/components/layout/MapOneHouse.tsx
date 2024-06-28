@@ -26,7 +26,7 @@ const MapOneHouse: React.FC<MapOneHouseProps> = ({ lonlat }) => {
     });
 
     // Add a pin at the given coordinates
-    new mapboxgl.Marker()
+    new mapboxgl.Marker({ color: '#FF00A8' }) // Set marker color to red
       .setLngLat(lonlat)
       .addTo(map.current);
 
