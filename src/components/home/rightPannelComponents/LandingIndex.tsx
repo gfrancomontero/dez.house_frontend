@@ -104,7 +104,6 @@ const LandingIndex: React.FC = () => {
           </button>
         </div>
       </div>
-      {loading && <p>Loading more houses...</p>}
     </div>
   );
 };

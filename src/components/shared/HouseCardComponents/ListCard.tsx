@@ -57,7 +57,7 @@ const ListCard = React.forwardRef<HTMLDivElement, HouseCardProps>(({ house, setI
                 general_address={house.general_address}
                 bedrooms={house.bedrooms}
                 bathrooms={house.bathrooms}
-                availability="Available on August 12th, for 17 nights"
+                availability={`Available on ${house.available_from}, for 17 nights`}
               />
               <PriceChips priceLabels={priceLabels} house={house} />
             </div>
