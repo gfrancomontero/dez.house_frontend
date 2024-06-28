@@ -12,6 +12,8 @@ type HouseCardProps = {
     title: string;
     images: { url: string }[];
     general_address: string;
+    available_from: string;
+    available_until: string;
     price_per_night: number;
     price_per_week: number;
     price_per_month: number;
@@ -51,15 +53,17 @@ const ListCard = React.forwardRef<HTMLDivElement, HouseCardProps>(({ house, setI
         </div>
 
         <div className="flex flex-col col-span-6 md:col-span-8 h-full">
-          <div className="flex justify-between h-full items-start py-4">
+          <div className="flex flex-col justify-between h-full items-start py-4">
             <div className="flex flex-col justify-between h-full">
               <HouseInfo
                 general_address={house.general_address}
                 bedrooms={house.bedrooms}
                 bathrooms={house.bathrooms}
-                availability={`Available on ${house.available_from}, for 17 nights`}
+                availability={`Available ${house.available_from} - ${house.available_until}`}
               />
               <PriceChips priceLabels={priceLabels} house={house} />
+            </div>
+            <div className="absolute top-3 right-0">
               <LikeButton liked={liked} handleLikeToggle={handleLikeToggle} />
             </div>
           </div>
