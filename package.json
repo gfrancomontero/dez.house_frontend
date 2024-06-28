@@ -9,11 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next/font": "^14.2.4",
+    "@next/font": "^14.2.4",
     "@nextui-org/react": "^2.4.1",
     "@svgr/webpack": "^8.1.0",
     "framer-motion": "^11.2.10",
     "gray-matter": "^4.0.3",
+    "mapbox-gl": "^3.4.0",
     "next": "14.2.4",
     "react": "^18",
     "react-dom": "^18",
@@ -21,6 +22,7 @@
     "url-loader": "^4.1.1"
   },
   "devDependencies": {
+    "@types/mapbox-gl": "^3.1.0",
     "@types/node": "^20",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18",
