@@ -22,22 +22,32 @@ type HouseCardProps = {
 const HouseCard = React.forwardRef<HTMLDivElement, HouseCardProps>(({ house }, ref) => {
   const [isClicked, setIsClicked] = useState(false);
   const [liked, setLiked] = useState(false);
+  const [likedHouses, setLikedHouses] = useState(new Set<number>());
 
   useEffect(() => {
-    const likedHouses = JSON.parse(localStorage.getItem('likedHouses') || '[]');
-    setLiked(likedHouses.includes(house.id));
+    try {
+      const storedLikes = JSON.parse(localStorage.getItem('likedHouses') || '[]');
+      setLikedHouses(new Set(storedLikes));
+      setLiked(storedLikes.includes(house.id));
+    } catch (error) {
+      console.error("Failed to fetch liked houses from localStorage:", error);
+    }
   }, [house.id]);
 
   const handleLikeToggle = () => {
-    const likedHouses = JSON.parse(localStorage.getItem('likedHouses') || '[]');
+    const updatedLikedHouses = new Set(likedHouses);
     if (liked) {
-      const updatedHouses = likedHouses.filter((id: number) => id !== house.id);
-      localStorage.setItem('likedHouses', JSON.stringify(updatedHouses));
+      updatedLikedHouses.delete(house.id);
     } else {
-      likedHouses.push(house.id);
-      localStorage.setItem('likedHouses', JSON.stringify(likedHouses));
+      updatedLikedHouses.add(house.id);
     }
-    setLiked(!liked);
+    try {
+      localStorage.setItem('likedHouses', JSON.stringify(Array.from(updatedLikedHouses)));
+      setLikedHouses(updatedLikedHouses);
+      setLiked(!liked);
+    } catch (error) {
+      console.error("Failed to update liked houses in localStorage:", error);
+    }
   };
 
   return (

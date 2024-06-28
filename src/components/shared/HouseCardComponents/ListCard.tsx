@@ -60,8 +60,8 @@ const ListCard = React.forwardRef<HTMLDivElement, HouseCardProps>(({ house, setI
                 availability={`Available on ${house.available_from}, for 17 nights`}
               />
               <PriceChips priceLabels={priceLabels} house={house} />
+              <LikeButton liked={liked} handleLikeToggle={handleLikeToggle} />
             </div>
-            <LikeButton liked={liked} handleLikeToggle={handleLikeToggle} />
           </div>
         </div>
       </div>
