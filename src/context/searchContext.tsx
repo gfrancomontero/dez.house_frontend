@@ -17,6 +17,8 @@ type SearchContextType = {
   loading: boolean;
   error: string | null;
   page: number;
+  searchParams: { location?: string };
+  setSearchParams: React.Dispatch<React.SetStateAction<{ location?: string }>>;
   setPage: React.Dispatch<React.SetStateAction<number>>;
   loadMoreHouses: () => void;
 };
@@ -28,11 +30,12 @@ export const SearchProvider: React.FC<{ children: ReactNode }> = ({ children }) 
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState<number>(1);
+  const [searchParams, setSearchParams] = useState<{ location?: string }>({});
 
   const getHouses = async (page: number) => {
     setLoading(true);
     try {
-      const data = await fetchHouses(page);
+      const data = await fetchHouses(page, searchParams);
       if (page === 1) {
         setHouses(data);
       } else {
@@ -49,16 +52,16 @@ export const SearchProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     }
   };
 
+  useEffect(() => {
+    getHouses(page);
+  }, [page, searchParams]);
+
   const loadMoreHouses = () => {
     setPage((prevPage) => prevPage + 1);
   };
 
-  useEffect(() => {
-    getHouses(page);
-  }, [page]);
-
   return (
-    <SearchContext.Provider value={{ houses, loading, error, page, setPage, loadMoreHouses }}>
+    <SearchContext.Provider value={{ houses, loading, error, page, searchParams, setSearchParams, setPage, loadMoreHouses }}>
       {children}
     </SearchContext.Provider>
   );
