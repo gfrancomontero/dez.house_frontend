@@ -1,6 +1,6 @@
 import React from 'react';
 import { Chip } from "@nextui-org/react";
-
+import { addDelimiters } from '/src/helpers/index.ts'
 type PriceChipsProps = {
   priceLabels: { [key: string]: string };
   house: {
@@ -22,7 +22,7 @@ const PriceChips: React.FC<PriceChipsProps> = ({ priceLabels, house }) => (
           content: "drop-shadow shadow-black text-white"
         }}
       >
-        ${house[key]} / {period.charAt(0).toUpperCase() + period.slice(1)}
+        ${addDelimiters(house[key],',')} / {period.charAt(0).toUpperCase() + period.slice(1)}
       </Chip>
     ))}
   </div>
