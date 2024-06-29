@@ -29,6 +29,7 @@ const Background: React.FC = () => {
       <Image
         alt="Miss Liberty"
         src='/images/miss_liberty.png'
+        priority={true}
         height={500}
         width={500}
         className={`absolute bottom-0 left-[2.5vw] h-[65vh] max-h-[50vw] w-auto opacity-80 ${styles.neonImage}`} 

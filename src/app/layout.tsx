@@ -2,6 +2,7 @@
 
 import React, { ReactNode } from 'react';
 import './globals.scss';
+import '@fancyapps/ui/dist/fancybox/fancybox.css';
 import Background from '../components/layout/Background';
 
 export const metadata = {

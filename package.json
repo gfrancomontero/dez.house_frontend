@@ -11,7 +11,7 @@
   "dependencies": {
     "@fancyapps/ui": "^5.0.36",
     "@next/font": "^14.2.4",
-    "@nextui-org/react": "^2.4.1",
+    "@nextui-org/react": "^2.4.2",
     "@svgr/webpack": "^8.1.0",
     "framer-motion": "^11.2.10",
     "gray-matter": "^4.0.3",
