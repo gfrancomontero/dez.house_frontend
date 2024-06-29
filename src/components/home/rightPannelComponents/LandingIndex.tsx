@@ -1,55 +1,15 @@
+// src/components/LandingIndex.tsx
 'use client'
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Chip } from '@nextui-org/react';
 import SearchIcon from '/public/icons/svg/search.svg';
 import HouseCard from '../../shared/HouseCard';
-import { fetchHouses } from '../../../services/HouseService';
 import Nav from '/src/components/layout/Nav.tsx';
-
-type House = {
-  title: any;
-  images: any;
-  general_address: string;
-  price_per_night: number;
-  price_per_week: number;
-  price_per_month: number;
-  id: number;
-};
+import { useSearch, SearchProvider } from '/src/context/SearchContext.tsx';
 
 const LandingIndex: React.FC = () => {
-  const [houses, setHouses] = useState<House[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-  const [page, setPage] = useState<number>(1);
+  const { houses, loading, error, loadMoreHouses } = useSearch();
   const loadMoreButtonRef = useRef<HTMLButtonElement>(null);
-
-  const getHouses = async (page: number) => {
-    setLoading(true);
-    try {
-      const data = await fetchHouses(page);
-      if (page === 1) {
-        setHouses(data); // Initial fetch replaces the state
-      } else {
-        setHouses((prevHouses) => [...prevHouses, ...data]);
-      }
-    } catch (error) {
-      if (error instanceof Error) {
-        setError(error.message);
-      } else {
-        setError('An unknown error occurred');
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const loadMoreHouses = () => {
-    setPage((prevPage) => prevPage + 1);
-  };
-
-  useEffect(() => {
-    getHouses(page);
-  }, [page]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -108,4 +68,10 @@ const LandingIndex: React.FC = () => {
   );
 };
 
-export default LandingIndex;
+const LandingIndexWrapper: React.FC = () => (
+  <SearchProvider>
+    <LandingIndex />
+  </SearchProvider>
+);
+
+export default LandingIndexWrapper;
