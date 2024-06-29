@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import HouseInfo from './HouseInfo';
 import PriceChips from './PriceChips';
 import LikeButton from './LikeButton';
-import { Image } from "@nextui-org/react";
+import FancyBox from '/src/components/layout/fancyBox.tsx';
 import MapOneHouse from '/src/components/layout/MapOneHouse.tsx';
 
 type ExpandedCardProps = {
@@ -20,6 +20,12 @@ type ExpandedCardProps = {
     bedrooms: number;
     bathrooms: number;
     id: number;
+    description: { en: string };
+    user: {
+      name: string;
+      phone_number: string;
+      email: string;
+    };
   };
   setIsClicked: React.Dispatch<React.SetStateAction<boolean>>;
   liked: boolean;
@@ -33,9 +39,19 @@ const ExpandedCard: React.FC<ExpandedCardProps> = ({ house, setIsClicked, liked,
     month: "price_per_month",
   };
 
+  const handleCardClick = (e: React.MouseEvent) => {
+    // Stop propagation only if the target is within the FancyBox component
+    const fancyBoxElement = document.querySelector("[data-fancybox]");
+    if (fancyBoxElement && fancyBoxElement.contains(e.target as Node)) {
+      e.stopPropagation();
+    } else {
+      setIsClicked(false);
+    }
+  };
+
   return (
     <motion.div 
-      onClick={() => setIsClicked(false)} 
+      onClick={handleCardClick} 
       className="w-[100vw] pl-[40vw] h-full fixed top-0 right-0 z-50 p-8 backdrop-blur-3xl"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -43,9 +59,9 @@ const ExpandedCard: React.FC<ExpandedCardProps> = ({ house, setIsClicked, liked,
       transition={{ duration: 0.5 }}
     >
       <div className="border-1-pink p-4 h-full flex flex-col">
-        {/* vitals  */}
+        {/* vitals */}
         <div className="flex items-center gap-2">
-          <Image alt="House" className="object-cover w-52" height={200} radius="lg" shadow="md" src={house.images[0].url} width="100%" />
+          <FancyBox images={house.images} />
           <div className="flex flex-col gap-2">
             <HouseInfo
               general_address={house.general_address}
