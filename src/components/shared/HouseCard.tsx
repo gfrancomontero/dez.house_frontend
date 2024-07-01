@@ -37,9 +37,9 @@ const HouseCard = React.forwardRef<HTMLDivElement, HouseCardProps>(({ house }, r
 
   const handleCardClick = () => {
     setIsClicked(true);
-    if (!seen) {
+    if (!seen) setTimeout(() => {
       addSeenHouse(house.id, `Marked house ${house.id} as seen.`);
-    }
+    }, 1000)
   };
 
   return (

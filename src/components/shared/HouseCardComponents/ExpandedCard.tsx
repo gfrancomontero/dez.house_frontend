@@ -24,6 +24,7 @@ type ExpandedCardProps = {
     user: {
       name: string;
       phone_number: string;
+      instagram: string;
       email: string;
     };
   };
@@ -86,6 +87,8 @@ const ExpandedCard: React.FC<ExpandedCardProps> = ({ house, setIsClicked, liked,
             <div className="grid grid-cols-2 gap-4 w-fit"> 
               <div className="col-span-1">Name:</div>  
               <div className="col-span-1">{house.user.name}</div>
+              <div className="col-span-1">Instagram:</div>  
+              <div className="col-span-1">{house.user.instagram}</div>
               <div className="col-span-1">Number:</div>
               <div className="col-span-1">{house.user.phone_number}</div>
               <div className="col-span-1">Email:</div>
